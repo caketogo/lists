@@ -56,7 +56,7 @@ class _BasicExample extends State<BasicExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Basic'),
+        title: Text('Event'),
       ),
       drawer: NavigationDrawer(),
       body: DragAndDropLists(

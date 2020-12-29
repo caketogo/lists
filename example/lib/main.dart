@@ -1,4 +1,4 @@
-import 'package:example/basic_example.dart';
+import 'package:example/event.dart';
 import 'package:example/drag_handle_example.dart';
 import 'package:example/drag_into_list_example.dart';
 import 'package:example/expansion_tile_example.dart';
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: '/list_tile_example',
       routes: {
-        '/': (context) => BasicExample(),
+        '/': (context) => Event(),
         '/list_tile_example': (context) => ListTileExample(),
         '/expansion_tile_example': (context) => ExpansionTileExample(),
         '/sliver_example': (context) => SliverExample(),

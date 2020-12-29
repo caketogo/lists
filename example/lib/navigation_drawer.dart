@@ -8,7 +8,7 @@ class NavigationDrawer extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Basic'),
+            title: Text('Event'),
             leading: Icon(Icons.list),
             onTap: () {
               Navigator.of(context).pop();
