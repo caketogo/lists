@@ -4,81 +4,64 @@ import 'package:example/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class BasicExample extends StatefulWidget {
-  BasicExample({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _BasicExample createState() => _BasicExample();
-}
-
-class _BasicExample extends State<BasicExample> {
-  List<DragAndDropList> _contents;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _contents = List.generate(10, (index) {
-      return DragAndDropList(
-        header: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Divider(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: Text('Header $index'),
-            ),
-            Expanded(
-              flex: 1,
-              child: Divider(),
-            ),
-          ],
-        ),
-        children: <DragAndDropItem>[
-          DragAndDropItem(
-            child: Text('$index.1'),
-          ),
-          DragAndDropItem(
-            child: Text('$index.2'),
-          ),
-          DragAndDropItem(
-            child: Text('$index.3'),
-          ),
-        ],
-      );
-    });
-  }
-
+class Event extends StatelessWidget {
+  static const String _title = 'Event Details';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Event'),
-      ),
-      drawer: NavigationDrawer(),
-      body: DragAndDropLists(
-        children: _contents,
-        onItemReorder: _onItemReorder,
-        onListReorder: _onListReorder,
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(_title)),
+        body: _Event(),
       ),
     );
   }
+}
 
-  _onItemReorder(
-      int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
-    setState(() {
-      var movedItem = _contents[oldListIndex].children.removeAt(oldItemIndex);
-      _contents[newListIndex].children.insert(newItemIndex, movedItem);
-    });
-  }
+/// This is the stateful widget that the main application instantiates.
+class _Event extends StatefulWidget {
+  _Event({Key key}) : super(key: key);
 
-  _onListReorder(int oldListIndex, int newListIndex) {
-    setState(() {
-      var movedList = _contents.removeAt(oldListIndex);
-      _contents.insert(newListIndex, movedList);
-    });
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState extends State<_Event> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter name of event',
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                if (_formKey.currentState.validate()) {
+                  // Process data.
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

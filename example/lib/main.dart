@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/list_tile_example',
+      initialRoute: '/',
       routes: {
         '/': (context) => Event(),
         '/list_tile_example': (context) => ListTileExample(),
