@@ -11,6 +11,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _isLoading = false;
+
   final _formKey = GlobalKey<FormState>();
   var email;
   var password;
@@ -179,11 +180,21 @@ class _LoginState extends State<Login> {
     };
 
    var result = await Network().login(data);
-    Navigator.push(
-      context,
-      new MaterialPageRoute(
-          builder: (context) => Home()
-      ),
-    );
+    if(result){
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+
+            builder: (context) => Home()
+        ),
+      );
+   }
+    else {
+    setState((){
+      _isLoading = false;
+    });
+
+    }
+
   }
 }

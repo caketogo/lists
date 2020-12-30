@@ -2,19 +2,30 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:example/auth/login.dart';
 import 'package:example/api/api.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+final _storage = FlutterSecureStorage();
+
+
+
+// Create storage
+@override
+
+
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
+
 class _HomeState extends State<Home>{
-  String name;
-  @override
-
 
   @override
+
   Widget build(BuildContext context) {
+    var name = await storage.read(key: 'name');
+    print(name);
     return Scaffold(
       appBar: AppBar(
         title: Text('Test App'),
@@ -25,7 +36,7 @@ class _HomeState extends State<Home>{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Hi, $name',
+            Text('asashash',
               style: TextStyle(
                   fontWeight: FontWeight.bold
               ),
@@ -34,7 +45,7 @@ class _HomeState extends State<Home>{
               child: RaisedButton(
                 elevation: 10,
                 onPressed: (){
-                  //logout();
+                  var result =  Network().logout();
                 },
                 color: Colors.teal,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
