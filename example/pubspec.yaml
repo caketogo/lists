@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   flutter_secure_storage: ^3.3.5
   http: ^0.12.0+4
+  json_traverse: ^0.1.0
 
   drag_and_drop_lists:
     path: ../

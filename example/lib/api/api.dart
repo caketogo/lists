@@ -2,7 +2,7 @@ import 'dart:convert' show json, base64, ascii;
 import 'package:http/http.dart' as http;
 import 'dart:developer' as developer;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import 'package:json_traverse/json_traverse.dart';
 // Create storage
 final storage = new FlutterSecureStorage();
 
@@ -17,11 +17,16 @@ class Network{
         url,
         body: data
     );
-    /**
-     * parse json so we get the token
-     * user and events into the storage.
-     */
-    
+
+    var body = JSONTraverse(res.body);
+
+
+    var token = body.query('meta')['token'];
+
+
+    print(token);
+    //print(meta.query('token'));
+
   return true;
   }
 
