@@ -60,6 +60,7 @@ class _LoginState extends State<Login> {
                                 style: TextStyle(color: Color(0xFF000000)),
                                 cursorColor: Color(0xFF9b9b9b),
                                 keyboardType: TextInputType.text,
+                                initialValue: 'simon@webworx.co.uk',
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
@@ -84,6 +85,7 @@ class _LoginState extends State<Login> {
                                 cursorColor: Color(0xFF9b9b9b),
                                 keyboardType: TextInputType.text,
                                 obscureText: true,
+                                initialValue: 'simon123',
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.vpn_key,

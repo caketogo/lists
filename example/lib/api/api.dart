@@ -13,12 +13,15 @@ class Network{
 
   Future <bool> login(data) async {
     var url = api_url + 'login';
-    print(url);
     var res = await http.post(
         url,
         body: data
     );
-    print(res.body);
+    /**
+     * parse json so we get the token
+     * user and events into the storage.
+     */
+    
   return true;
   }
 
