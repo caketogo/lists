@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:example/api/api.dart';
 import 'package:example/auth/home.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:example/auth/login.dart';
 
 class Register extends StatefulWidget {
@@ -237,19 +237,8 @@ class _RegisterState extends State<Register> {
       'lname': lname
     };
 
-    var res = await Network().authData(data, '/register');
-    var body = json.decode(res.body);
-    if(body['success']){
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', json.encode(body['token']));
-      localStorage.setString('user', json.encode(body['user']));
-      Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (context) => Home()
-        ),
-      );
-    }
+   // var res = await Network().authData(data, '/register');
+
 
     setState(() {
       _isLoading = false;

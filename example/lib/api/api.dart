@@ -1,39 +1,26 @@
-import 'dart:convert';
+import 'dart:convert' show json, base64, ascii;
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:developer' as developer;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+// Create storage
+final storage = new FlutterSecureStorage();
+
+
 
 class Network{
-  final String _url = 'http://localhost:8000/api/v1';
-  //if you are using android studio emulator, change localhost to 10.0.2.2
-  var token;
+  final String api_url = 'https://www.seatingplanner.co.uk/api/';
 
-  _getToken() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    token = jsonDecode(localStorage.getString('token'))['token'];
-  }
-
-  authData(data, apiUrl) async {
-    var fullUrl = _url + apiUrl;
-    return await http.post(
-        fullUrl,
-        body: jsonEncode(data),
-        headers: _setHeaders()
+  Future <bool> login(data) async {
+    var url = api_url + 'login';
+    print(url);
+    var res = await http.post(
+        url,
+        body: data
     );
+    print(res.body);
+  return true;
   }
 
-  getData(apiUrl) async {
-    var fullUrl = _url + apiUrl;
-    await _getToken();
-    return await http.get(
-        fullUrl,
-        headers: _setHeaders()
-    );
-  }
-
-  _setHeaders() => {
-    'Content-type' : 'application/json',
-    'Accept' : 'application/json',
-    'Authorization' : 'Bearer $token'
-  };
 
 }

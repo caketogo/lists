@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:example/api/api.dart';
 import 'package:example/auth/home.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:example/auth/register.dart';
 class Login extends StatefulWidget {
   @override
@@ -176,25 +176,12 @@ class _LoginState extends State<Login> {
       'password' : password
     };
 
-    var res = await Network().authData(data, '/login');
-    var body = json.decode(res.body);
-    if(body['success']){
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', json.encode(body['token']));
-      localStorage.setString('user', json.encode(body['user']));
-      Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (context) => Home()
-        ),
-      );
-    }else{
-      _showMsg(body['message']);
-    }
-
-    setState(() {
-      _isLoading = false;
-    });
-
+   var result = await Network().login(data);
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+          builder: (context) => Home()
+      ),
+    );
   }
 }

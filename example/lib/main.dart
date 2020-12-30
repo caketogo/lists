@@ -9,9 +9,15 @@ import 'package:example/sliver_example.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:example/auth/login.dart';
 import 'package:example/auth/home.dart';
+
+// Create storage
+final storage = new FlutterSecureStorage();
+
+
+
 void main() {
   runApp(MyApp());
 }
@@ -62,13 +68,7 @@ class _CheckAuthState extends State<CheckAuth> {
   }
 
   void _checkIfLoggedIn() async{
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var token = localStorage.getString('token');
-    if(token != null){
-      setState(() {
-        isAuth = true;
-      });
-    }
+
   }
   @override
   Widget build(BuildContext context) {
