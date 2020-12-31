@@ -9,16 +9,20 @@ import 'package:example/sliver_example.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:example/auth/login.dart';
 import 'package:example/auth/home.dart';
+import 'package:example/storage.dart';
 
-// Create storage
-final storage = new FlutterSecureStorage();
+
 
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+   StorageUtil.getInstance();
+   StorageUtil.putString('name','simon');
   runApp(MyApp());
 }
 

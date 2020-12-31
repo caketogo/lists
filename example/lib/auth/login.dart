@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:example/api/api.dart';
 import 'package:example/auth/home.dart';
-
 import 'package:example/auth/register.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();

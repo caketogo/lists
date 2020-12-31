@@ -2,10 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:example/auth/login.dart';
 import 'package:example/api/api.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-final _storage = FlutterSecureStorage();
-
+import 'package:example/storage.dart';
 
 
 // Create storage
@@ -24,8 +21,9 @@ class _HomeState extends State<Home>{
   @override
 
   Widget build(BuildContext context) {
-    var name = await storage.read(key: 'name');
-    print(name);
+
+    var name = StorageUtil.getString('name');
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Test App'),
@@ -36,7 +34,7 @@ class _HomeState extends State<Home>{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('asashash',
+            Text("Welcome $name",
               style: TextStyle(
                   fontWeight: FontWeight.bold
               ),

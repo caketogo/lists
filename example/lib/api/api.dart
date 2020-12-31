@@ -1,11 +1,10 @@
 import 'dart:convert' show json, base64, ascii;
 import 'package:http/http.dart' as http;
 import 'dart:developer' as developer;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:json_traverse/json_traverse.dart';
 
-// Create storage
-final storage = new FlutterSecureStorage();
+import 'package:json_traverse/json_traverse.dart';
+import 'package:example/storage.dart';
+
 
 
 
@@ -37,8 +36,8 @@ class Network{
       var user = body.query('data');
 
       // Set in storage..
-      storage.write(key: 'token', value: token);
-      storage.write(key: 'name', value: user['name'] );
+      StorageUtil.putString('token', token);
+      StorageUtil.putString('name',  user['name'] );
 
       return true;
     }
