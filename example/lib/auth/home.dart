@@ -23,6 +23,7 @@ class _HomeState extends State<Home>{
   Widget build(BuildContext context) {
 
     var name = StorageUtil.getString('name');
+ Network().event(1);
 
     return Scaffold(
       appBar: AppBar(

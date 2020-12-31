@@ -11,6 +11,8 @@ import 'package:example/storage.dart';
 class Network{
   final String api_url = 'https://www.seatingplanner.co.uk/api/';
 
+
+
   /**
    * Attempt to Login
    */
@@ -44,6 +46,16 @@ class Network{
 
   }
 
+  Future <bool> event(id) async {
+    // Build URL
+    var url = api_url + 'event/1';
+    var token = StorageUtil.getString('token');
+    // Make the request
+    var res = await http.get( url ,headers: {'Authorization': 'Bearer $token'},);
+   print(res.body);
+
+
+  }
 
   Future <bool> logout() {
     print('logout');
